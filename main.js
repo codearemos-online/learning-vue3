@@ -2,7 +2,9 @@ const app = Vue.createApp({
     data(){
         return{
             product:`Socks`,
-            description:`Implement a new descrription to socks`
+            image:`./assets/images/socks_green.jpg`,
+            description:`Implement a new descrription to socks`,
+            url:`https://github.com/codearemos-online`
         }
     }
 })
