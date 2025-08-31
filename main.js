@@ -6,7 +6,7 @@ const app = Vue.createApp({
             image:`./assets/images/socks_green.jpg`,
             description:`Implement a new descrription to socks`,
             url:`https://github.com/codearemos-online`,
-            inStock:false,
+            inStock:true,
             details:[
                 "50% cotton",
                 "30% wool",
