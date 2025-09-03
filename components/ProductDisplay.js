@@ -24,6 +24,7 @@ app.component('product-display', {
                         {{size}}
                     </div>
                     <button :class="{disabledButton: !inStock}" class="button" v-on:click="addToCart" v-bind:disabled="!inStock">Add to Cart</button>
+                    <button class="button" v-on:click="clearCart" v-bind:disabled="!inStock">clear the Cart</button>
                 </div>
             </div>
         </div>`,
@@ -66,7 +67,10 @@ app.component('product-display', {
         },
         methods:{
             addToCart(){
-                this.cart += 1; 
+                this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+            },
+            clearCart(){
+                this.$emit('clear-cart')
             },
             updateVariant(index){
                 this.selectedVariant = index;
