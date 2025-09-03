@@ -1,18 +1,23 @@
 app.component('product-display', {
+    props:{
+        premium:{
+            type:Boolean,
+            required:true
+        }
+    },
     template: `
-        <div class="product-display"><div class="product-display">
+        <div class="product-display">
             <div class="product-container">
                 <div class="product-image">
                     <img v-bind:src="image" alt="" :class="[!inStock ? 'out-of-stock-img' : '']">
                 </div>
                 <div class="product-info">
-                    <h1 v-if="onSale">{{title}}</h1>
+                    <h1 :style="{opacity: !onSale ? 0.5 : ''}">{{title}}</h1>
+                    <p>Shipping: {{isPremium}}</p>
                     <p v-if="inStock">In stock</p>
                     <p v-else>Out of stock</p>
-                    <ul>
-                        <li v-for="detail in details">{{detail}}</li>
-                    </ul>
-                    <div class="color-circle" v-bind:style="{backgroundColor: variant.color}" v-for="(variant, index) in variants" :key="variant.id" @mouseOver="updateVariant(index)" >
+                    <product-detail :details="details"></product-detail>
+                    <div class="color-circle" v-bind:style="{backgroundColor: variant.color}" v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" >
                         
                     </div>
                     <div v-for="size in sizes">
@@ -79,6 +84,9 @@ app.component('product-display', {
             },
             onSale(){
                 return this.variants[this.selectedVariant].onSale;
+            },
+            isPremium(){
+                return !this.premium ? 1.00 : 'free' ;
             }
         }
 })
